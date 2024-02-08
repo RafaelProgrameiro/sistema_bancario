@@ -19,7 +19,7 @@ CREATE TABLE clientes (
     cpf_cliente char(11) not null unique,
     senha_cliente varchar(20) not null,
     numero_conta_cliente int not null unique,
-    agencia_cliente int REFERENCES agencias(id),
+    agencia_cliente int REFERENCES agencias(id) not null,
     saldo_cliente int DEFAULT 0
 );
 

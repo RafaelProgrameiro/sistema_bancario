@@ -3,7 +3,7 @@ const signIn = (req, res) => {
     
     
     //console.log(nome_cliente, email_cliente, cpf_cliente, senha_cliente)
-    res.send('estou aqui')
+    return res.send('estou aqui')
 }
 
 export default signIn
