@@ -1,4 +1,4 @@
-const home = (req, res) => {
+const home = (req, res) => {    
     res.send('Página Inicial')
 };
 
