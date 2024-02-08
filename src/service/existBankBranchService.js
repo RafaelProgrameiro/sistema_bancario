@@ -1,20 +1,20 @@
 import pool from '../dbConnection.js';
 
-const validCpfService = async (cpf_cliente) => {
+const existBankBranchService = async (agencia_cliente) =>{
     try {
         const query = `
         SELECT
-            cpf_cliente from clientes
+            id from agencias
         WHERE
-            cpf_cliente = $1`;
+            numero = $1`;
         
-        const {rows : cpf} = await pool.query(query, [cpf_cliente])
+        const {rows : id_agencia} = await pool.query(query, [agencia_cliente])
         
-        return cpf[0];
+        return id_agencia[0];
     } catch (err) {
         console.log(err.message)
         return res.status(500).json({mensagem: 'Erro inesperado do sistema.'});
     }
 }
 
-export default validCpfService;
+export default existBankBranchService;
