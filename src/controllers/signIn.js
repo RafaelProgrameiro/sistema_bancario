@@ -1,9 +1,13 @@
+import createAccountNumberByCpf from '../utils/createAccountNumberByCpf.js';
+
 const signIn = (req, res) => {
-    const {nome_cliente, email_cliente, cpf_cliente, senha_cliente} = req.body
-    const id_agencia = req.id_agencia
+    const {client_name, client_email, client_cpf, client_pass} = req.body
+
+    client_account_number = createAccountNumberByCpf(client_cpf);
+
     
-    
-    console.log(nome_cliente, email_cliente, cpf_cliente, senha_cliente, id_agencia)
+
+
     return res.send('estou aqui')
 }
 

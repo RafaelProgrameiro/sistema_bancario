@@ -1,10 +1,10 @@
 import validCpfService from '../service/validCpfService.js';
 
 const validCpf = async (req, res, next) =>{
-    const {cpf_cliente} = req.body;
+    const {client_cpf} = req.body;
 
     try {
-        const cpf = await validCpfService(cpf_cliente);     
+        const cpf = await validCpfService(client_cpf);     
         
         if (cpf){
             return res.status(400).json({message: 'Já existe um usuário cadastrado com este cpf.'});
