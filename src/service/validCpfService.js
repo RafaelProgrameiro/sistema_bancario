@@ -1,14 +1,14 @@
 import pool from '../dbConnection.js';
 
-const validCpfService = async (cpf_cliente) => {
+const validCpfService = async (client_cpf) => {
     try {
         const query = `
         SELECT
-            cpf_cliente from clientes
+            client_cpf from clients
         WHERE
-            cpf_cliente = $1`;
+            client_cpf = $1`;
         
-        const {rows : cpf} = await pool.query(query, [cpf_cliente])
+        const {rows : cpf} = await pool.query(query, [client_cpf])
         
         return cpf[0];
     } catch (err) {

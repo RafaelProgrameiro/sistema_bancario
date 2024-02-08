@@ -19,10 +19,6 @@ const signInSchema = joi.object({
         'any.required': 'O campo senha é obrigatório',
         'string.empty': 'O campo senha é obrigatório',
         'string.length': 'Formato inválido de senha'
-    }),
-    agencia_cliente: joi.string().required().messages({
-        'any.required': 'A agência é obrigatória',
-        'string.empty': 'A agência é obrigatória'
     })
 })
 

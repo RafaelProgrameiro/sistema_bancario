@@ -1,49 +1,38 @@
 -- banco de dados
 CREATE DATABASE sistema_bancario
 
--- tabela agencias
-CREATE TABLE agencias (
-    id serial primary key,
-    nome varchar(120) not null,
-    numero int not null unique
-);
-
--- inserir dados na tabela agencias
-INSERT INTO agencias (nome, numero) VALUES ('Agência A', 101), ('Agência B', 102), ('Agência C', 103);
-
 -- tabela clientes
-CREATE TABLE clientes (
+CREATE TABLE clients (
     id serial primary key,
-    nome_cliente varchar(120) not null,
-    email_cliente varchar(120) not null,
-    cpf_cliente char(11) not null unique,
-    senha_cliente varchar(20) not null,
-    numero_conta_cliente int not null unique,
-    agencia_cliente int REFERENCES agencias(id) not null,
-    saldo_cliente int DEFAULT 0
+    client_name varchar(120) not null,
+    client_email varchar(120) not null,
+    client_cpf char(11) not null unique,
+    client_pass varchar(20) not null,
+    client_account_number int not null unique,
+    client_balance int DEFAULT 0
 );
 
 -- tabela depositos
-CREATE TABLE depositos (
+CREATE TABLE deposits (
     id serial primary key,
-    cliente int REFERENCES clientes(id) not null,
-    valor int check (valor >= 0) not null, 
-    data_deposito  TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+    client_account_number int REFERENCES clients(client_account_number) not null,
+    amount int check (amount >= 0) not null, 
+    deposit_date  TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 );
 
 -- tabela saques
-CREATE TABLE saques (
+CREATE TABLE withdraw (
     id serial primary key,
-    cliente int REFERENCES clientes(id) not null,
-    valor int check (valor >= 0) not null, 
-    data_saque  TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+    client_account_number int REFERENCES clients(client_account_number) not null,
+    amount int CHECK (amount >= 0) not null, 
+    withdraw_date  TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 );
 
 -- tabela transferencias
-CREATE TABLE transferencias (
+CREATE TABLE transfers (
     id serial primary key,
-    cliente_transferindo int REFERENCES clientes(id) not null,
-    cliente_recebendo int REFERENCES clientes(id) check (cliente_recebendo != cliente_transferindo) not null,
-    valor int check (valor >= 0) not null, 
-    data_transferencia  TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+    transfering_account_number int REFERENCES clients(client_account_number) not null,
+    receaving_account_number int REFERENCES clients(client_account_number) check (receaving_account_number != transfering_account_number) not null,
+    amount int check (amount >= 0) not null, 
+    transfer_date  TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 );
