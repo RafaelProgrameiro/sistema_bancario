@@ -2,7 +2,7 @@ import createAccountNumberByCpf from '../utils/createAccountNumberByCpf.js';
 import bcrypt from 'bcrypt';
 import registerClientService from '../service/registerClientService.js';
 
-const signIn = async (req, res) => {
+const signUp = async (req, res) => {
     const {client_name, client_email, client_cpf, client_pass} = req.body
 
     const client_account_number = createAccountNumberByCpf(client_cpf);    
@@ -23,7 +23,7 @@ const signIn = async (req, res) => {
         return res.status(500).json({mensagem: 'Erro inesperado do sistema.'});
     }
 
-    return res.status(201);
+    return res.status(201).send();
 }
 
-export default signIn;
+export default signUp;

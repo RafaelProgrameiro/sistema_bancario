@@ -1,5 +1,5 @@
 import joi from 'joi';
-const signInSchema = joi.object({
+const signUpSchema = joi.object({
     client_name: joi.string().required().messages({
         'any.required': 'O nome é obrigatório',
         'string.empty': 'O nome é obrigatório'
@@ -22,4 +22,4 @@ const signInSchema = joi.object({
     })
 });
 
-export default signInSchema;
+export default signUpSchema;
