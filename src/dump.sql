@@ -7,23 +7,23 @@ CREATE TABLE clients (
     client_name varchar(120) not null,
     client_email varchar(120) not null,
     client_cpf char(11) not null unique,
-    client_pass varchar(20) not null,
-    client_account_number int not null unique,
+    client_pass varchar(100) not null,
+    client_account_number char(5) not null unique,
     client_balance int DEFAULT 0
 );
 
 -- tabela depositos
 CREATE TABLE deposits (
     id serial primary key,
-    client_account_number int REFERENCES clients(client_account_number) not null,
+    client_account_number int REFERENCES clients(id) not null,
     amount int check (amount >= 0) not null, 
     deposit_date  TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 );
 
 -- tabela saques
-CREATE TABLE withdraw (
+CREATE TABLE withdraws (
     id serial primary key,
-    client_account_number int REFERENCES clients(client_account_number) not null,
+    client_account_number int REFERENCES clients(id) not null,
     amount int CHECK (amount >= 0) not null, 
     withdraw_date  TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 );
@@ -31,8 +31,8 @@ CREATE TABLE withdraw (
 -- tabela transferencias
 CREATE TABLE transfers (
     id serial primary key,
-    transfering_account_number int REFERENCES clients(client_account_number) not null,
-    receaving_account_number int REFERENCES clients(client_account_number) check (receaving_account_number != transfering_account_number) not null,
+    transfering_account_number int REFERENCES clients(id) not null,
+    receaving_account_number int REFERENCES clients(id) check (receaving_account_number != transfering_account_number) not null,
     amount int check (amount >= 0) not null, 
     transfer_date  TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 );
