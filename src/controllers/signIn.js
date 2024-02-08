@@ -16,14 +16,14 @@ const signIn = async (req, res) => {
             client_account_number,
             encryptedPass
         }
-        await registerClientService(client)
+        await registerClientService(client);
 
     } catch (err) {
-        console.log(err.message)
+        
         return res.status(500).json({mensagem: 'Erro inesperado do sistema.'});
     }
 
     return res.status(201);
 }
 
-export default signIn
+export default signIn;

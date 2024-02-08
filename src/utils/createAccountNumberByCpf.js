@@ -7,7 +7,7 @@ const createAccountNumberByCpf = (client_cpf) => {
     let accountNumber = Math.abs(hash) % 100000;
     accountNumber = accountNumber.toString().padStart(5, '0');
 
-    return accountNumber
+    return accountNumber;
 }
 
 export default createAccountNumberByCpf;

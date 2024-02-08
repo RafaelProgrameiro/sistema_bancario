@@ -8,11 +8,11 @@ const validCpfService = async (client_cpf) => {
         WHERE
             client_cpf = $1`;
         
-        const {rows : cpf} = await pool.query(query, [client_cpf])
+        const {rows : cpf} = await pool.query(query, [client_cpf]);
         
         return cpf[0];
     } catch (err) {
-        console.log(err.message)
+        
         return res.status(500).json({mensagem: 'Erro inesperado do sistema.'});
     }
 }

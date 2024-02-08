@@ -12,6 +12,6 @@ const signInRoute = express();
 signInRoute.post('/signin',
     bodyReqValidation(signInSchema),
     validCpf,        
-    signIn)
+    signIn);
 
 export default signInRoute;

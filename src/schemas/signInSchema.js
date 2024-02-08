@@ -20,6 +20,6 @@ const signInSchema = joi.object({
         'string.empty': 'O campo senha é obrigatório',
         'string.length': 'Senha precisa ter 6 dígitos'
     })
-})
+});
 
-export default signInSchema
+export default signInSchema;
