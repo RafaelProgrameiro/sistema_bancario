@@ -1,8 +1,9 @@
 import pool from '../dbConnection.js';
 
 const registerClientService = async (client) => {
-    const {client_name, client_email, client_cpf, encryptedPass, client_account_number} = client
-    const query = `
+    const {client_name, client_email, client_cpf, encryptedPass, client_account_number} = client;
+    try {
+        const query = `
     INSERT INTO clients (
         client_name,
         client_email,
@@ -13,7 +14,11 @@ const registerClientService = async (client) => {
 
     const params = [client_name, client_email, client_cpf, encryptedPass, client_account_number];    
 
-    await pool.query(query, params);    
+    await pool.query(query, params); 
+    } catch (err) {
+        return res.status(500).json({mensagem: 'Erro inesperado do sistema.'});
+    }
+       
 }
 
 export default registerClientService;

@@ -5,6 +5,7 @@ import loginRoute from './routes/login.js';
 import updateEmailRoute from './routes/updateEmail.js';
 import updatePassRoute from './routes/updatePass.js';
 import detailsRoute from './routes/details.js';
+import deleteAccountRoute from './routes/deleteAccount.js';
 
 import authentication from './middleware/authentication.js';
 
@@ -21,6 +22,7 @@ app.use(authentication);
 app.use(detailsRoute)
 app.use(updateEmailRoute);
 app.use(updatePassRoute);
+app.use(deleteAccountRoute);
 
 
 export default app;
