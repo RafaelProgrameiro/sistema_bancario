@@ -4,13 +4,13 @@ import login from '../controllers/login.js';
 
 import bodyReqValidation from '../middleware/bodyReqValidation.js';
 import loginSchema from '../schemas/loginSchema.js';
-import existClient from '../middleware/existClient.js';
+import clientByAccount from '../middleware/clientByAccount.js';
 
 const loginRoute = express();
 
 loginRoute.post('/login',
     bodyReqValidation(loginSchema),
-    existClient,
+    clientByAccount,
     login);
 
 export default loginRoute;

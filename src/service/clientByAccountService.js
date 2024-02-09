@@ -1,6 +1,6 @@
 import pool from '../dbConnection.js';
 
-const existClientService = async (client_account_number) => {
+const clientByAccountService = async (client_account_number) => {
     try {
         const query = `
         SELECT
@@ -16,4 +16,4 @@ const existClientService = async (client_account_number) => {
     }    
 }
 
-export default existClientService;
+export default clientByAccountService;

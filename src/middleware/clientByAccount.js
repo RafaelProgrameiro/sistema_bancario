@@ -1,12 +1,12 @@
-import existClientService from '../service/existClientService.js';
+import clientByAccountService from '../service/clientByAccountService.js';
 
 import bcrypt from 'bcrypt';
 
-const existClient = async (req, res, next) => {
+const clientByAccount = async (req, res, next) => {
     const {client_account_number, client_pass} = req.body;
 
     try {
-        const client = await existClientService(client_account_number);
+        const client = await clientByAccountService(client_account_number);
 
         if(!client){
             return res.status(400).json({mensagem: 'Usuário e/ou senha inválido(s).'});
@@ -24,4 +24,4 @@ const existClient = async (req, res, next) => {
     }
 }    
 
-export default existClient;
+export default clientByAccount;
