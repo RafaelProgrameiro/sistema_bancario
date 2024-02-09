@@ -5,7 +5,8 @@ const login = async (req, res) => {
     const client_id = req.client_id;
     
     const token = jwt.sign({id: client_id}, jwtKey, {expiresIn: '8h'});
-    return res.status(200).send(token);
+    res.setHeader('Authorization', token);
+    return res.status(200).send('Login efetuado com sucesso');
 }
 
 export default login;
