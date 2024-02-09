@@ -3,10 +3,13 @@ import pool from '../dbConnection.js';
 const clientByIdService = async (client_id) => {
     
     try {
-        const query = `Select * from clients where id = $1`;
-        const {rows: client} = await pool.query(query, [client_id]);
+        const query = `
+        SELECT
+            * from clients
+        WHERE
+        id = $1`;
+        const {rows: client} = await pool.query(query, [client_id]);        
         
-        console.log(client[0])
         return client[0];
     } catch (err) {
        
