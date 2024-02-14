@@ -9,7 +9,7 @@ const clientByAccountService = async (client_account_number) => {
             client_account_number = $1`;
 
         const {rows : client} = await pool.query(query, [client_account_number]);
-
+        
         return client[0];
     } catch (err) {
         return res.status(500).json({message: 'Erro inesperado do sistema.'});

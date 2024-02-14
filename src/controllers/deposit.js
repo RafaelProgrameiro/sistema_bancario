@@ -6,12 +6,13 @@ const deposit = async (req, res) => {
     const { client_account_number, amount } = req.body;    
 
     try {
-        const {id : client_id} = await clientByAccountService(client_account_number);
-
-        console.log(client_id)
-        if(!client_id){
+        const client = await clientByAccountService(client_account_number);
+        
+        if(!client){
             return res.status(400).json({message: 'Conta não encontrada'});            
         }
+
+        const {id: client_id} = client;
 
         const deposit = await depositService(amount, client_id);
 
@@ -20,7 +21,8 @@ const deposit = async (req, res) => {
         }
         
         return res.status(204).send();
-    } catch (err) {        
+    } catch (err) { 
+        console.log(err.message)       
         return res.status(500).json({message: 'Erro inesperado do sistema.'});
     }
 }
