@@ -9,6 +9,7 @@ import deleteAccountRoute from './routes/deleteAccount.js';
 import depositRoute from './routes/deposit.js';
 
 import authentication from './middleware/authentication.js';
+import withdrawRoute from './routes/withdraw.js';
 
 const app = express();
 
@@ -26,6 +27,6 @@ app.use(updatePassRoute);
 app.use(deleteAccountRoute);
 
 app.use(depositRoute);
-
+app.use(withdrawRoute);
 
 export default app;
