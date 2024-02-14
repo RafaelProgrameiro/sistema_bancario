@@ -6,6 +6,7 @@ import updateEmailRoute from './routes/updateEmail.js';
 import updatePassRoute from './routes/updatePass.js';
 import detailsRoute from './routes/details.js';
 import deleteAccountRoute from './routes/deleteAccount.js';
+import depositRoute from './routes/deposit.js';
 
 import authentication from './middleware/authentication.js';
 
@@ -23,6 +24,8 @@ app.use(detailsRoute)
 app.use(updateEmailRoute);
 app.use(updatePassRoute);
 app.use(deleteAccountRoute);
+
+app.use(depositRoute);
 
 
 export default app;
