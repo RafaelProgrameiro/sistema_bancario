@@ -13,7 +13,7 @@ const clientByIdService = async (client_id) => {
         return client[0];
     } catch (err) {
        
-        return res.status(500).json({mensagem: 'Erro inesperado do sistema.'});
+        return res.status(500).json({message: 'Erro inesperado do sistema.'});
     }   
 }
 

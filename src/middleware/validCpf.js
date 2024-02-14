@@ -11,7 +11,7 @@ const validCpf = async (req, res, next) =>{
         }
         next();
     } catch(err){
-        return res.status(500).json({mensagem: 'Erro inesperado do sistema.'});
+        return res.status(500).json({message: 'Erro inesperado do sistema.'});
     }
 }
 

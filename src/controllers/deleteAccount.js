@@ -9,7 +9,7 @@ const deleteAccount = async (req, res) => {
         await deleteAccountService(client_id);
         return res.status(204).send(); 
     } catch (err) {
-        return res.status(500).json({mensagem: 'Erro inesperado do sistema.'});
+        return res.status(500).json({message: 'Erro inesperado do sistema.'});
     }
 }
 
