@@ -4,7 +4,7 @@ import depositService from '../service/depositService.js';
 import depositRegService from '../service/depositRegService.js';
 
 const deposit = async (req, res) => {
-    const { receaving_client_account_number, amount } = req.body;
+    const { client_account_number: receaving_client_account_number, amount } = req.body;
     const {id : depositing_client_id} = req.client
     
     try {
