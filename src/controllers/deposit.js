@@ -1,28 +1,37 @@
 import clientByAccountService from '../service/clientByAccountService.js';
+import clientByIdService from '../service/clientByIdService.js';
 import depositService from '../service/depositService.js';
 import depositRegService from '../service/depositRegService.js';
 
 const deposit = async (req, res) => {
-    const { client_account_number, amount } = req.body;    
-
+    const { receaving_client_account_number, amount } = req.body;
+    const {id : depositing_client_id} = req.client
+    
     try {
-        const client = await clientByAccountService(client_account_number);
+        const receaving_client = await clientByAccountService(receaving_client_account_number);
         
-        if(!client){
+        if(!receaving_client){
             return res.status(400).json({message: 'Conta não encontrada'});            
         }
 
-        const {id: client_id} = client;
+        const {id: receaving_client_id} = receaving_client;
 
-        const deposit = await depositService(amount, client_id);
-
+        const deposit = await depositService(amount, receaving_client_id);
+        
         if(deposit){
-            await depositRegService(client_account_number, client_id, amount);
+           const depositing_client =  await clientByIdService(depositing_client_id);
+           const depositing_client_account_number = depositing_client.client_account_number;
+            await depositRegService(
+                depositing_client_account_number,
+                depositing_client_id,
+                receaving_client_account_number,
+                receaving_client_id,
+                amount
+                );
         }
         
         return res.status(204).send();
-    } catch (err) { 
-        console.log(err.message)       
+    } catch (err) {                       
         return res.status(500).json({message: 'Erro inesperado do sistema.'});
     }
 }
