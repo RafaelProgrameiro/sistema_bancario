@@ -9,7 +9,8 @@ CREATE TABLE clients (
     client_cpf char(11) not null unique,
     client_pass varchar(100) not null,
     client_account_number char(5) not null unique,
-    client_balance int DEFAULT 0
+    client_balance int DEFAULT 0,
+    client_activated boolean DEFAULT TRUE
 );
 
 -- tabela depositos
