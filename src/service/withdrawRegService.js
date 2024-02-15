@@ -8,8 +8,7 @@ const withdrawRegService = async (client_account_number, client_id, amount) => {
             VALUES 
                 ($1, $2, $3)`;
         await pool.query(query, [client_account_number, client_id, amount]);
-    } catch (err) {
-        console.log(err.message);
+    } catch (err) {        
         return res.status(500).json({message: 'Erro inesperado do sistema.'});
     }
 }

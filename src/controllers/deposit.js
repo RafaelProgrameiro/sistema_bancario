@@ -14,7 +14,7 @@ const deposit = async (req, res) => {
             return res.status(400).json({message: 'Conta não encontrada'});            
         }
 
-        const {id: receaving_client_id} = receaving_client;
+        const {client_pass: _, id: receaving_client_id} = receaving_client;
 
         const deposit = await depositService(amount, receaving_client_id);
         

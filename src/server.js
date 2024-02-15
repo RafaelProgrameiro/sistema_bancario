@@ -10,6 +10,7 @@ import depositRoute from './routes/deposit.js';
 
 import authentication from './middleware/authentication.js';
 import withdrawRoute from './routes/withdraw.js';
+import transferRoute from './routes/transfer.js';
 
 const app = express();
 
@@ -28,5 +29,6 @@ app.use(deleteAccountRoute);
 
 app.use(depositRoute);
 app.use(withdrawRoute);
+app.use(transferRoute);
 
 export default app;

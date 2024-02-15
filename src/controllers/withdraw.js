@@ -22,8 +22,7 @@ const withdraw = async (req, res) => {
         }
     
         return res.status(204).send();
-    } catch (err) {
-        console.log(err.message);
+    } catch (err) {        
         return res.status(500).json({message: 'Erro inesperado do sistema.'});
     }
 

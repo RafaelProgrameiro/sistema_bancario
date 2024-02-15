@@ -11,9 +11,9 @@ const depositService = async (amount, client_id) => {
         WHERE
             id = $2`;
     
-        await pool.query(query, [amount, client_id]);
-
-        return true;
+        const deposit = await pool.query(query, [amount, client_id]);
+        
+        return deposit.rowCount;
     } catch (err) {        
         return res.status(500).json({message: 'Erro inesperado do sistema.'});  
     } 
