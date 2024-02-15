@@ -25,9 +25,9 @@ const authentication = async (req, res, next) => {
         next();
 
     } catch (err) {
-        if(err.message === 'jwt malformed' || err.message === 'invalid signature'){
+        if(err.message === 'jwt malformed' || err.message === 'invalid signature' || err.message === 'jwt expired'){
             return res.status(401).json({message: 'Necessário token de autenticação válido.'});
-        }        
+        }               
         return res.status(500).json({message: 'Erro inesperado do sistema.'});
     }
     
