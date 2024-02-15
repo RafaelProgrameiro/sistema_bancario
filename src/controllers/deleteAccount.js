@@ -1,9 +1,11 @@
 import deleteAccountService from '../service/deleteAccountService.js';
-import inactivatedAccountService from '../service/inactivatedAccountService.js';
 
 const deleteAccount = async (req, res) => {
-    const {id: client_id} = req.client;    
-    try {               
+    const {id: client_id, client_balance} = req.client;    
+    try {
+        if(client_balance != 0){
+            return res.status(400).json({message: 'Não é possível inativar conta com saldo.'});
+        }               
         await deleteAccountService(client_id);
         
         return res.status(204).send();
