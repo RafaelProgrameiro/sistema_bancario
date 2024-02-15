@@ -16,14 +16,13 @@ const signUp = async (req, res) => {
             client_account_number,
             encryptedPass
         }
-        const created_client_account_number = await registerClientService(client);        
+        const created_client_account_number = await registerClientService(client); 
 
+        return res.status(201).json(created_client_account_number);
     } catch (err) {
         
         return res.status(500).json({message: 'Erro inesperado do sistema.'});
-    }
-
-    return res.status(201).json(created_client_account_number);
+    }    
 }
 
 export default signUp;

@@ -1,7 +1,9 @@
 import express from 'express';
+
 import homeRoute from './routes/home.js';
 import signUpRoute from './routes/signUp.js';
 import loginRoute from './routes/login.js';
+import reactiveAccountRoute from './routes/reactiveAccount.js';
 
 import authentication from './middleware/authentication.js';
 import inactivatedAccount from './middleware/inactivatedAccount.js';
@@ -22,6 +24,7 @@ app.use(express.json());
 app.use(homeRoute);
 app.use(signUpRoute);
 app.use(loginRoute);
+app.use(reactiveAccountRoute);
 
 app.use(authentication, inactivatedAccount);
 

@@ -11,8 +11,8 @@ const deleteAccountService = async (client_id) => {
                 id = $1
         `;
         
-        const deleted_account = await pool.query(query, [client_id]);
-        return deleted_account.rowCount;
+        await pool.query(query, [client_id]);
+        
     } catch (err) {        
         return res.status(500).json({message: 'Erro inesperado do sistema.'});
     }
