@@ -16,6 +16,7 @@ import deleteAccountRoute from './routes/deleteAccount.js';
 import depositRoute from './routes/deposit.js';
 import withdrawRoute from './routes/withdraw.js';
 import transferRoute from './routes/transfer.js';
+import statementRoute from './routes/statement.js';
 
 const app = express();
 
@@ -28,7 +29,8 @@ app.use(reactiveAccountRoute);
 
 app.use(authentication, inactivatedAccount);
 
-app.use(detailsRoute)
+app.use(detailsRoute);
+app.use(statementRoute);
 app.use(updateEmailRoute);
 app.use(updatePassRoute);
 app.use(deleteAccountRoute);
@@ -36,5 +38,6 @@ app.use(deleteAccountRoute);
 app.use(depositRoute);
 app.use(withdrawRoute);
 app.use(transferRoute);
+
 
 export default app;
