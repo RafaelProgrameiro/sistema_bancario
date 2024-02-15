@@ -5,11 +5,13 @@ const statementOutcomingDepositsService = async (client_id) => {
     try {
         const query = `
             SELECT
-                depositing_client_account_number, receaving_client_account_number, amount, deposit_date
+                depositing_client_account_number, receaving_client_account_number, amount, transaction_date
             FROM
                 deposits
             WHERE
-                depositing_client_id = $1`;
+                depositing_client_id = $1
+            ORDER BY
+                transaction_date ASC`;
         const { rows: outcoming_deposits } = await pool.query(query, [client_id]);
     
     return outcoming_deposits;
@@ -24,11 +26,13 @@ const statementIncomingDepositsService = async (client_id) => {
     try {
         const query = `
             SELECT
-                depositing_client_account_number, receaving_client_account_number, amount, deposit_date
+                depositing_client_account_number, receaving_client_account_number, amount, transaction_date
             FROM
                 deposits
             WHERE
-                receaving_client_id = $1`;
+                receaving_client_id = $1
+            ORDER BY
+                transaction_date ASC`;
         const { rows: incoming_deposits } = await pool.query(query, [client_id]);
     
     return incoming_deposits;
@@ -43,11 +47,13 @@ const statementWithdrawssService = async (client_id) => {
     try {
         const query = `
             SELECT
-                client_account_number, amount, withdraw_date
+                client_account_number, amount, transaction_date
             FROM
                 withdraws
             WHERE
-                client_id = $1`;
+                client_id = $1
+            ORDER BY
+                transaction_date ASC`;
         const { rows: withdraws } = await pool.query(query, [client_id]);
     
     return withdraws;
@@ -62,11 +68,13 @@ const statementOutcomingtransfersService = async (client_id) => {
     try {
         const query = `
             SELECT
-                transfering_account_number, receaving_account_number, amount, transfer_date
+                transfering_account_number, receaving_account_number, amount, transaction_date
             FROM
                 transfers
             WHERE
-                transfering_client_id = $1`;
+                transfering_client_id = $1
+            ORDER BY
+                transaction_date ASC`;
         const { rows: outcoming_transfers } = await pool.query(query, [client_id]);
     
     return outcoming_transfers;
@@ -81,11 +89,13 @@ const statementIncomingtransfersService = async (client_id) => {
     try {
         const query = `
             SELECT
-                transfering_account_number, receaving_account_number, amount, transfer_date
+                transfering_account_number, receaving_account_number, amount, transaction_date
             FROM
                 transfers
             WHERE
-                receaving_client_id = $1`;
+                receaving_client_id = $1
+            ORDER BY
+                transaction_date ASC`;
         const { rows: incoming_transfers } = await pool.query(query, [client_id]);
     
     return incoming_transfers;

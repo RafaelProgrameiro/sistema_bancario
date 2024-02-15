@@ -21,7 +21,7 @@ CREATE TABLE deposits (
     receaving_client_account_number char(5) not null,
     receaving_client_id int REFERENCES clients(id) not null,
     amount int check (amount >= 0) not null, 
-    deposit_date  TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+    transaction_date  TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP AT TIME ZONE 'America/Sao_Paulo'
 );
 
 -- tabela saques
@@ -30,7 +30,7 @@ CREATE TABLE withdraws (
     client_account_number char(5) not null,
     client_id int REFERENCES clients(id) not null,
     amount int CHECK (amount >= 0) not null, 
-    withdraw_date  TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+    transaction_date  TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP AT TIME ZONE 'America/Sao_Paulo'
 );
 
 -- tabela transferencias
@@ -41,5 +41,5 @@ CREATE TABLE transfers (
     receaving_account_number char(5) check (receaving_account_number != transfering_account_number) not null,
     receaving_client_id int REFERENCES clients(id) not null,
     amount int check (amount >= 0) not null,
-    transfer_date  TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+    transaction_date  TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP AT TIME ZONE 'America/Sao_Paulo'
 );
