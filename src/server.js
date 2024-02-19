@@ -17,6 +17,7 @@ import depositRoute from './routes/deposit.js';
 import withdrawRoute from './routes/withdraw.js';
 import transferRoute from './routes/transfer.js';
 import statementRoute from './routes/statement.js';
+import favoritesRoute from './routes/favorites.js';
 
 const app = express();
 
@@ -30,6 +31,7 @@ app.use(reactiveAccountRoute);
 app.use(authentication, inactivatedAccount);
 
 app.use(detailsRoute);
+app.use(favoritesRoute);
 app.use(statementRoute);
 app.use(updateEmailRoute);
 app.use(updatePassRoute);
