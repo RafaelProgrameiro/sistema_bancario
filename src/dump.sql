@@ -43,3 +43,10 @@ CREATE TABLE transfers (
     amount int check (amount >= 0) not null,
     transaction_date  TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP AT TIME ZONE 'America/Sao_Paulo'
 );
+
+--tabela favorites
+CREATE TABLE favorites (
+    favorite_id serial primary key,
+    client_id int references clients(id) not null,
+    favorited_client_id int references clients(id) not null check (favorited_client_id != client_id)
+);
