@@ -10,6 +10,8 @@ const statementOutcomingDepositsService = async (client_id) => {
                 deposits
             WHERE
                 depositing_client_id = $1
+            AND
+                depositing_client_account_number != receaving_client_account_number
             ORDER BY
                 transaction_date ASC`;
         const { rows: outcoming_deposits } = await pool.query(query, [client_id]);
@@ -30,7 +32,7 @@ const statementIncomingDepositsService = async (client_id) => {
             FROM
                 deposits
             WHERE
-                receaving_client_id = $1
+                receaving_client_id = $1             
             ORDER BY
                 transaction_date ASC`;
         const { rows: incoming_deposits } = await pool.query(query, [client_id]);
