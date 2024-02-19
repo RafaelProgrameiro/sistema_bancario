@@ -1,5 +1,5 @@
 const home = (req, res) => {    
-    res.send('Página Inicial');
+    return res.status(200).send('Página Inicial');
 };
 
 export default home;

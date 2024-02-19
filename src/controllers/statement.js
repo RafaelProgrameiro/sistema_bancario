@@ -3,8 +3,8 @@ import convertToBrazilFormatDate from '../utils/convertToBrazilFormatDate.js';
 import {
     statementOutcomingDepositsService, statementIncomingDepositsService,
     statementWithdrawssService,
-    statementOutcomingtransfersService,
-    statementIncomingtransfersService } from '../service/statementService.js';
+    statementOutcomingTransfersService,
+    statementIncomingTransfersService } from '../service/statementService.js';
 
 const statement = async (req, res) => {
     const {client_account_number, id: client_id, client_balance} = req.client;
@@ -20,9 +20,9 @@ const statement = async (req, res) => {
 
         statement.withdraws = await statementWithdrawssService(client_id);
         
-        statement.outcoming_transfers = await statementOutcomingtransfersService(client_id);              
+        statement.outcoming_transfers = await statementOutcomingTransfersService(client_id);              
 
-        statement.incoming_transfers = await statementIncomingtransfersService(client_id);       
+        statement.incoming_transfers = await statementIncomingTransfersService(client_id);       
 
         statement = convertToBrazilFormatDate(statement);
 

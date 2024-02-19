@@ -65,7 +65,7 @@ const statementWithdrawssService = async (client_id) => {
     }    
 };
 
-const statementOutcomingtransfersService = async (client_id) => {
+const statementOutcomingTransfersService = async (client_id) => {
 
     try {
         const query = `
@@ -86,7 +86,7 @@ const statementOutcomingtransfersService = async (client_id) => {
     }    
 };
 
-const statementIncomingtransfersService = async (client_id) => {
+const statementIncomingTransfersService = async (client_id) => {
 
     try {
         const query = `
@@ -110,5 +110,5 @@ const statementIncomingtransfersService = async (client_id) => {
 export {
     statementOutcomingDepositsService, statementIncomingDepositsService,
     statementWithdrawssService,
-    statementOutcomingtransfersService,
-    statementIncomingtransfersService };
+    statementOutcomingTransfersService,
+    statementIncomingTransfersService };
