@@ -19,9 +19,11 @@ const transfer = async (req, res) => {
         const withdraw = await withdrawService(amount, transfering_client_id);
         const deposit = await depositService(amount, receaving_client_id);
 
-        if(withdraw && deposit){
-            await transferRegService(transfering_account_number, transfering_client_id, receaving_account_number, receaving_client_id, amount);
-        }        
+        if(!deposit || !withdraw){
+            return res.status(404).json({message: 'Erro ao realizar transação.'});
+        }
+
+        await transferRegService(transfering_account_number, transfering_client_id, receaving_account_number, receaving_client_id, amount);               
 
         return res.status(204).send();
     } catch (err) {

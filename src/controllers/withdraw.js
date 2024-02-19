@@ -16,11 +16,13 @@ const withdraw = async (req, res) => {
         }
 
         const withdraw = await withdrawService(amount, client_id);
-
-        if(withdraw){
-            await withdrawRegService(client_account_number, client_id, amount);
+        
+        if(!withdraw){
+            return res.status(404).json({message: 'Erro ao realizar transação.'});
         }
-    
+
+        await withdrawRegService(client_account_number, client_id, amount);
+
         return res.status(204).send();
     } catch (err) {        
         return res.status(500).json({message: 'Erro inesperado do sistema.'});
