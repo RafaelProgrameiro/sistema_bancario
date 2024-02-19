@@ -21,8 +21,7 @@ const clientByAccount = async (req, res, next) => {
         req.client_id = client.id;
         
         next();
-    } catch (err) {
-        
+    } catch (err) {        
         return res.status(500).json({message: 'Erro inesperado do sistema.'});
     }
 }    
