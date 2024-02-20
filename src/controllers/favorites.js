@@ -1,7 +1,7 @@
-import { addFavoriteService, deleteFavoriteService, getAllFavoritesService } from '../service/favoritesService.js';
+import { addFavoriteService, deleteFavoriteService, getAllFavoritesService, getFavoritedService } from '../service/favoritesService.js';
 import inactivatedAccountService from '../service/inactivatedAccountService.js';
 
-const favorites  = async (req, res) => {
+const getAllFavorites  = async (req, res) => {
     try {
         const {id: client_id} = req.client;
 
@@ -22,6 +22,12 @@ const addFavorites = async (req, res) => {
         return res.status(400).json({message: 'Não é possivel favoritar a própria conta.'});
     }
     try { 
+        const existFavorited = await getFavoritedService(client_id, favorited_client_id);
+
+        if(existFavorited != 0){
+            return res.status(400).json({message: 'Conta já está favoritada.'});
+        }
+
         const inactivated_account = await inactivatedAccountService(favorited_client_id);
 
         if(inactivated_account){
@@ -31,7 +37,7 @@ const addFavorites = async (req, res) => {
         await addFavoriteService(client_id, favorited_client_id);
     
         return res.status(204).send();
-    } catch (err) {
+    } catch (err) {        
         return res.status(500).json({message: 'Erro inesperado do sistema.'});
     }    
 }
@@ -54,4 +60,4 @@ const deleteFavorites = async (req, res) => {
     }
 }
 
-export {favorites, addFavorites, deleteFavorites};
+export {getAllFavorites, addFavorites, deleteFavorites};

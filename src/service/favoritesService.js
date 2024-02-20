@@ -58,4 +58,22 @@ const getAllFavoritesService = async (client_id) => {
     }
 }
 
-export { addFavoriteService, deleteFavoriteService, getAllFavoritesService };
+const getFavoritedService = async (client_id, favorited_client_id) => {
+    try {
+        const query = `
+            SELECT
+                favorite_id from favorites
+            WHERE
+                client_id = $1
+            AND
+                favorited_client_id = $2`;
+        const {rowCount: existFavorited} = await pool.query(query, [client_id, favorited_client_id]);
+
+        return existFavorited;
+    } catch (err) {        
+        return res.status(500).json({message: 'Erro inesperado do sistema.'});
+    }
+}
+
+
+export { addFavoriteService, deleteFavoriteService, getAllFavoritesService, getFavoritedService };
