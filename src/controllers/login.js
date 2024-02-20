@@ -1,5 +1,6 @@
 import jwt from 'jsonwebtoken';
-import { jwtKey } from '../../jwtKey.js';
+import dotenv from 'dotenv';
+dotenv.config();
 
 import inactivatedAccountService from '../service/inactivatedAccountService.js';
 
@@ -11,7 +12,7 @@ const login = async (req, res) => {
         if(inactivated_account != 0){
             return res.status(400).json({message: 'Conta precisa estar ativa para realizar ação.'});
         }
-        const token = jwt.sign({id: client_id}, jwtKey, {expiresIn: '8h'});
+        const token = jwt.sign({id: client_id}, process.env.JWT_KEY, {expiresIn: '8h'});
         res.setHeader('Authorization', token);
         return res.status(200).send('Login efetuado com sucesso');        
         

@@ -1,2 +1,2 @@
 node_modules
-jwtKey.js
+.env

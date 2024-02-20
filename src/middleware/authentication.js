@@ -1,5 +1,6 @@
-import { jwtKey } from '../../jwtKey.js';
 import jwt from 'jsonwebtoken';
+import dotenv from 'dotenv';
+dotenv.config();
 
 import clientByIdService from '../service/clientByIdService.js';
 
@@ -16,7 +17,7 @@ const authentication = async (req, res, next) => {
         if (!token){
             return res.status(401).json({message: 'Necessário token de autenticação válido.'});
         }
-        const {id: client_id} =  jwt.verify(token, jwtKey);
+        const {id: client_id} =  jwt.verify(token, process.env.JWT_KEY);
         
         req.client = await clientByIdService(client_id);        
         if(!req.client){
