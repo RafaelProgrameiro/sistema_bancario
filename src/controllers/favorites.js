@@ -16,7 +16,7 @@ const getAllFavorites  = async (req, res) => {
 
 const addFavorites = async (req, res) => {
     const { id: client_id } = req.client;
-    const favorited_client_id = req.client_id;
+    const favorited_client_id = req.body_client_id;
 
     if (client_id == favorited_client_id){
         return res.status(400).json({message: 'Não é possivel favoritar a própria conta.'});
@@ -44,7 +44,7 @@ const addFavorites = async (req, res) => {
 
 const deleteFavorites = async (req, res) => {
     const { id: client_id } = req.client; 
-    const favorited_client_id = req.client_id;
+    const favorited_client_id = req.body_client_id;
     
     try {
         const favorite = await deleteFavoriteService(client_id, favorited_client_id);

@@ -27,7 +27,7 @@ const existBodyAccount = async (req, res, next) =>{
             }           
         }
 
-        req.client_id = client_id;
+        req.body_client_id = client_id;
 
         next();
     } catch (err) {

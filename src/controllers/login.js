@@ -5,7 +5,7 @@ dotenv.config();
 import inactivatedAccountService from '../service/inactivatedAccountService.js';
 
 const login = async (req, res) => {
-    const client_id = req.client_id;
+    const client_id = req.matched_client_id;
 
     try {        
         const inactivated_account = await inactivatedAccountService(client_id);        

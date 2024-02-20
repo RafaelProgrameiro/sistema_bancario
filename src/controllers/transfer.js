@@ -5,7 +5,7 @@ import transferRegService from '../service/transferRegService.js';
 const transfer = async (req, res) => {
     const {client_account_number: transfering_account_number, id: transfering_client_id, client_balance } = req.client; 
     const {client_account_number: receaving_account_number, amount} = req.body;
-    const receaving_client_id = req.client_id;
+    const receaving_client_id = req.body_client_id;
 
     if(transfering_account_number == receaving_account_number){
         return res.status(400).json({message: 'Não é possível realizar transferência para a mesma conta.'});

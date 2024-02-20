@@ -18,7 +18,7 @@ const clientByAccount = async (req, res, next) => {
             return res.status(400).json({message: 'Usuário e/ou senha inválido(s).'});
         }
        
-        req.client_id = client.id;
+        req.matched_client_id = client.id;
         
         next();
     } catch (err) {        
