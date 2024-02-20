@@ -1,8 +1,9 @@
 import joi from 'joi';
 const signUpSchema = joi.object({
-    client_name: joi.string().required().messages({
+    client_name: joi.string().required().min(3).messages({
         'any.required': 'O nome é obrigatório',
-        'string.empty': 'O nome é obrigatório'
+        'string.empty': 'O nome é obrigatório',
+        'string.min': 'O nome precisa ter ao menos 3 letras'
     }),
     client_email: joi.string().email().required().messages({
         'string.email': 'Formato inválido de e-mail',
